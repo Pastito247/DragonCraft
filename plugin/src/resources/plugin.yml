@@ -1,4 +1,26 @@
-name: NombreDelPlugin
+name: DragonCraft
+version: 1.0
 main: com.pasto.dragoncraft.Main
-version: 1.0.0
-api-version: 1.20
+author: Pastito247
+description: Plugin de Minecraft que recrea un mundo de fantasía basado en Dungeons & Dragons 5ta edición.
+
+commands:
+  cambiarclase:
+    description: Cambia la clase del jugador.
+    usage: /cambiarclase <clase>
+    permission: dragoncraft.cambiarclase
+
+  darxp:
+    description: Da experiencia a un jugador.
+    usage: /darxp <jugador> <cantidad>
+    permission: dragoncraft.admin
+
+  cambiarclaseadmin:
+    description: Cambia la clase de un jugador sin cooldown.
+    usage: /cambiarclaseadmin <jugador> <clase>
+    permission: dragoncraft.admin
+
+  verstats:
+    description: Muestra la experiencia y nivel de la clase del jugador.
+    usage: /verstats
+    permission: dragoncraft.verstats

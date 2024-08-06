@@ -1,6 +1,10 @@
 package com.pasto.dragoncraft;
 
 import com.pasto.dragoncraft.classes.*;
+import com.pasto.dragoncraft.commands.AdminCommands;
+import com.pasto.dragoncraft.commands.ClassChangeCommand;
+import com.pasto.dragoncraft.commands.ViewStatsCommand;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +20,7 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         classManager = new ClassManager();
         getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new ExperienceListener(classManager), this);
         getLogger().info("DragonCraft se ha habilitado!");
     }
 
@@ -45,5 +50,9 @@ public class Main extends JavaPlugin implements Listener {
                 ((Guerrero) playerClass).activateRegeneration(player);
             }
         }
+        this.getCommand("cambiarclase").setExecutor(new ClassChangeCommand(classManager));
+        this.getCommand("darxp").setExecutor(new AdminCommands(classManager));
+        this.getCommand("cambiarclaseadmin").setExecutor(new AdminCommands(classManager));
+        this.getCommand("verstats").setExecutor(new ViewStatsCommand(classManager));
     }
 }
