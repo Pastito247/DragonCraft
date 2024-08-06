@@ -11,6 +11,24 @@ public class Druida implements PlayerClass {
         player.setLevel(50); // Representando el mana con el nivel
     }
 
+    public void activatePolymorph(Player player, String form) {
+        switch (form.toLowerCase()) {
+            case "lobo":
+                player.setDisplayName("Lobo");
+                break;
+            case "oso":
+                player.setDisplayName("Oso");
+                break;
+            case "ave":
+                player.setDisplayName("Ave");
+                break;
+            case "pez":
+                player.setDisplayName("Pez");
+                break;
+        }
+        player.sendMessage("¡Te has transformado en un " + form + "!");
+    }
+
     @Override
     public String getClassName() {
         return "Druida";

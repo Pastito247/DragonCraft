@@ -1,20 +1,20 @@
 package com.pasto.dragoncraft;
 
-import org.bukkit.event.Listener;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDeathEvent;
+import com.pasto.dragoncraft.classes.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.event.block.Action;
 
 public class Main extends JavaPlugin implements Listener {
 
     private ClassManager classManager;
-    private LevelManager levelManager;
 
     @Override
     public void onEnable() {
         classManager = new ClassManager();
-        levelManager = new LevelManager();
         getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("DragonCraft se ha habilitado!");
     }
@@ -25,10 +25,25 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onEntityDeath(EntityDeathEvent event) {
-        if (event.getEntity().getKiller() instanceof Player) {
-            Player player = event.getEntity().getKiller();
-            levelManager.addExperience(player, 10); // Añadir experiencia al jugador
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        if (player.isSneaking() && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+            PlayerClass playerClass = classManager.getPlayerClass(player);
+            if (playerClass instanceof Arcanista) {
+                ((Arcanista) playerClass).activateTeleport(player);
+            } else if (playerClass instanceof Barbaro) {
+                ((Barbaro) playerClass).activateRage(player);
+            } else if (playerClass instanceof Bardo) {
+                ((Bardo) playerClass).activateHeal(player);
+            } else if (playerClass instanceof Druida) {
+                ((Druida) playerClass).activatePolymorph(player, "lobo"); // Cambia "lobo" a la forma deseada
+            } else if (playerClass instanceof Picaro) {
+                ((Picaro) playerClass).activateInvisibility(player);
+            } else if (playerClass instanceof Paladin) {
+                ((Paladin) playerClass).activateShield(player, player); // Cambia player al objetivo deseado
+            } else if (playerClass instanceof Guerrero) {
+                ((Guerrero) playerClass).activateRegeneration(player);
+            }
         }
     }
 }
