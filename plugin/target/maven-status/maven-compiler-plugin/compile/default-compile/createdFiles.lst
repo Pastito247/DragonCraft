@@ -1,9 +1,12 @@
 com\pasto\dragoncraft\classes\PlayerClass.class
+com\pasto\dragoncraft\commands\ViewStatsCommand.class
 com\pasto\dragoncraft\LevelManager.class
 com\pasto\dragoncraft\classes\Picaro.class
+com\pasto\dragoncraft\commands\AdminCommands.class
 com\pasto\dragoncraft\classes\ClassManager.class
 com\pasto\dragoncraft\classes\Paladin.class
 com\pasto\dragoncraft\abilities\Ability.class
+com\pasto\dragoncraft\commands\ClassChangeCommand.class
 com\pasto\dragoncraft\classes\Guerrero.class
 com\pasto\dragoncraft\classes\Bardo.class
 com\pasto\dragoncraft\classes\Arcanista.class
